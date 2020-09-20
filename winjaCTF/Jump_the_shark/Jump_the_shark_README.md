@@ -16,11 +16,11 @@ Gives a text,
 
 Open pcap file in wireshaek, it looks like brute-force attack.
 
-<img src="./img/file.jpg" alt="Challange-img" width="500"/>
+<img src="./img/file.JPG" alt="Challange-img" width="500"/>
 
 Randomly opened one POST request to see the response for failed login attempt and it is returning error `{"code":"invalid","message":"You're not logged in"}`.
 
-<img src="./img/file2.jpg" alt="Challange-img" width="750"/>
+<img src="./img/file2.JPG" alt="Challange-img" width="750"/>
 
 Used tcpdump to read file and set HTTP stream filter, tried to grep the `flag` and `imvalid` count and it seems like for successful login message does not have `valid` in response, as `flag` has one more count than `valid`.
 
@@ -53,9 +53,9 @@ Later I realised it can be done via Wireshark easily using display filter
 
 ` http and frame contains correct `
 
-<img src="./img/file3.png" alt="Challange-img" width="750"/>
+<img src="./img/file3.PNG" alt="Challange-img" width="750"/>
 
-<img src="./img/file4.png" alt="Challange-img" width="750"/>
+<img src="./img/file4.PNG" alt="Challange-img" width="750"/>
 
 ** Flag **
 
