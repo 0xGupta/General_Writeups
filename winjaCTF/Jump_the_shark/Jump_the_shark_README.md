@@ -22,7 +22,7 @@ Randomly opened one POST request to see the response for failed login attempt an
 
 <img src="./img/file2.JPG" alt="Challange-img" width="750"/>
 
-Used tcpdump to read file and set HTTP stream filter, tried to grep the `flag` and `imvalid` count and it seems like for successful login message does not have `valid` in response, as `flag` has one more count than `valid`.
+Used tcpdump to read file and set HTTP stream filter, tried to grep the `flag` and `invalid` count and it seems like for successful login message does not have `valid` in response, as `flag` has one more count than `valid`.
 
 Then tried searching for other message like `correct`, `success` and bingo we found one entry for `correct`
 
