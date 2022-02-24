@@ -10,14 +10,20 @@ Provide Text :  The Mark LXXXV suit needs an urgent firmware upgrade.
 #### Application Overview
 
 - Application Stack
+
 	WebServer : Express (Node.js web application server )
+
 	<img src="./image/Pasted image 20220224071626.png" alt="server" width="500"/>
+
 	Fevicon : MongoDB (NoSQL Database)
+
 	<img src="./image/Pasted image 20220224061124.png" alt="fevicon" width="500"/>
 	
 
 - App Intraction
+
 	The main.js send POST request to API /api/login with params ```username``` and ```password``` and response is not verbos.
+
 	<img src="./image/Pasted image 20220224062528.png" alt="req" width="500"/>
 
 	``` JavaScript
