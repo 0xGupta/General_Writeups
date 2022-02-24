@@ -2,7 +2,7 @@
 
 ### Challenge
 Provide Text :  The Mark LXXXV suit needs an urgent firmware upgrade.
-![[Pasted image 20220224071532.png]]
+<img src="./image/Pasted image 20220224071532.png" alt="Challange-img" width="500"/>
 
 ### Approach
 
@@ -10,13 +10,14 @@ Provide Text :  The Mark LXXXV suit needs an urgent firmware upgrade.
 
 - Application Stack
 	WebServer : Express (Node.js web application server )
-	![[Pasted image 20220224071626.png]]
+	<img src="./image/Pasted image 20220224071626.png" alt="server" width="500"/>
 	Fevicon : MongoDB (NoSQL Database)
-	![[Pasted image 20220224061124.png]]
+	<img src="./image/Pasted image 20220224061124.png" alt="fevicon" width="500"/>
+	
 
 - App Intraction
-	The main.js send POST request to API /api/login with params ```username``` and ```password``` and response is not verbose
-	![[Pasted image 20220224062528.png]]
+	The main.js send POST request to API /api/login with params ```username``` and ```password``` and response is not verbos.
+	<img src="./image/Pasted image 20220224062528.png" alt="req" width="500"/>
 
 	``` JavaScript
 	const login = document.getElementById('login');
@@ -54,7 +55,7 @@ Sending the following query string as the NodeJS module `qs` parses the query st
 username[$eq]=admin&password[$ne]=1
 ```
 
-![[Pasted image 20220224064240.png]]
+<img src="./image/Pasted image 20220224064240.png" alt="injection" width="500"/>
 
 - Guess the legth of password
 As the flag is the password and we have to sort of perform a brutforce to extract the password.
@@ -64,11 +65,11 @@ As the flag is the password and we have to sort of perform a brutforce to extrac
 
 Using Burp intruder
 
-![[Pasted image 20220224065002.png]]
+<img src="./image/Pasted image 20220224065002.png" alt="burp" width="500"/>
 
 The response leght after 45 is 233 which means password length in 45 characters.
 
-![[Pasted image 20220224065122.png]]
+<img src="./image/Pasted image 20220224065122.png" alt="inturder" width="500"/>
 
 - Retrieving flag
 
@@ -78,7 +79,7 @@ Using `$regex`  we can retrieve the password as well.
 ```username=admin&password[$regex]=knox\{a.*```
 The regex will return true if first character in braces is a and anything after that, thus we use the same logic in our code.
 
-![[pass.gif]]
+<img src="./image/pass.gif" alt="script" width="500"/>
 
 ```Python
 #!/usr/bin/python3  
