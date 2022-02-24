@@ -78,6 +78,8 @@ Using `$regex`  we can retrieve the password as well.
 ```username=admin&password[$regex]=knox\{a.*```
 The regex will return true if first character in braces is a and anything after that, thus we use the same logic in our code.
 
+![Script](pass.gif)
+
 ```Python
 #!/usr/bin/python3  
 import re  
@@ -114,5 +116,3 @@ def main():
 if __name__ == '__main__':  
 	main()
 ```
-
-![Script](pass.gif)
