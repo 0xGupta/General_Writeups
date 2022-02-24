@@ -2,7 +2,7 @@
 
 ### Challenge
 Provide Text :  The Mark LXXXV suit needs an urgent firmware upgrade.
-![Home](Pasted image 20220224071532.png)
+![[Pasted image 20220224071532.png]]
 
 ### Approach
 
@@ -10,14 +10,13 @@ Provide Text :  The Mark LXXXV suit needs an urgent firmware upgrade.
 
 - Application Stack
 	WebServer : Express (Node.js web application server )
-	![WebServer](Pasted image 20220224071626.png)
+	![[Pasted image 20220224071626.png]]
 	Fevicon : MongoDB (NoSQL Database)
-	![Fevicon](Pasted image 20220224061124.png)
+	![[Pasted image 20220224061124.png]]
 
 - App Intraction
 	The main.js send POST request to API /api/login with params ```username``` and ```password``` and response is not verbose
-
-	![login](Pasted image 20220224062528.png)
+	![[Pasted image 20220224062528.png]]
 
 	``` JavaScript
 	const login = document.getElementById('login');
@@ -54,7 +53,8 @@ Sending the following query string as the NodeJS module `qs` parses the query st
 ```
 username[$eq]=admin&password[$ne]=1
 ```
-![valid](Pasted image 20220224064240.png)
+
+![[Pasted image 20220224064240.png]]
 
 - Guess the legth of password
 As the flag is the password and we have to sort of perform a brutforce to extract the password.
@@ -64,11 +64,11 @@ As the flag is the password and we have to sort of perform a brutforce to extrac
 
 Using Burp intruder
 
-![Intruder](Pasted image 20220224065002.png)
+![[Pasted image 20220224065002.png]]
 
 The response leght after 45 is 233 which means password length in 45 characters.
 
-![PassLength](Pasted image 20220224065122.png)
+![[Pasted image 20220224065122.png]]
 
 - Retrieving flag
 
