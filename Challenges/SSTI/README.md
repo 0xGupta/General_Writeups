@@ -9,7 +9,7 @@
 
 ## Initial Analysis - Recon
 
-We have been provided with IP Address of the website along with source code.
+We were provided with the website’s IP address along with the source code.
 <img src="../image/challenge.png" alt="challenge" width="500"/>
 
 As we have code available, we will perform some static code review followed by dynamic app testing.
@@ -160,7 +160,7 @@ Now with malicious request to validate the vulnerability, `lang=__${7*7}__::.x`
 
 <img src="../image/ssti_test.png" alt="ssti_test" width="500"/>
 
-HTTP 400, this is not what we expected, it is a get request, lets try with URL encoded payload `lang=%5f%5f%24%7b%37%2a%37%7d%5f%5f%3a%3a%2e%78`, and whola!!! our input `7*7` has been processed by server and as 49, and because of no controller definition for given value we are getting the server side error.
+HTTP 400, this is not what we expected, it is a get request, lets try with URL encoded payload `lang=%5f%5f%24%7b%37%2a%37%7d%5f%5f%3a%3a%2e%78`, and voila!!! our input `7*7` has been processed by server and returned 49, and because of no controller definition for given value we are getting the server side error.
 
 <img src="../image/ssti_validate.png" alt="ssti_validate.png" width="500"/>
 
@@ -186,7 +186,7 @@ One the same testing guide we have string manipulation guide available `{"dfd".r
 
 <img src="../image/rce_try2.png" alt="rce_try2.png" width="500"/>
 
-But still it returns the object instance and not actual value what we want, and hence we have to find out a way to get a reverse shell or perform SSRF. And with bit of research we have our request crafted.
+However, it still returns the object instance and not the actual value we need, and hence we have to find out a way to get a reverse shell or perform SSRF. After a bit of research, we crafted our request.
 
 #### Showtime
 
