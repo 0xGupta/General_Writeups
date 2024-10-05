@@ -1,7 +1,10 @@
 
-> [!Challenge Details]
+> Challenge Details
+
 > > Platform - Hackthebox
+
 > > Challenge Category - Web ( Server Side Template injection )
+
 > > Difficulty Level - Moderate
 
 ## Initial Analysis - Recon
